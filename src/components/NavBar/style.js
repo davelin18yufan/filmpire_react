@@ -1,4 +1,4 @@
-const drawerWidth = '240px';
+const drawerWidth = 240;
 
 export const classes = (theme) => ({
   drawer: {

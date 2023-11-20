@@ -13,7 +13,7 @@ const Root = () => (
   >
     <CssBaseline />
     <NavBar />
-    <Box component="main" sx={{ flexGrow: '1', p: '2rem' }}>
+    <Box component="main" sx={{ flexGrow: '1', padding: '2rem', width: '100%' }}>
       <Box sx={{ height: '70px' }} />
       <Outlet />
     </Box>

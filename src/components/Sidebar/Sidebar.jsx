@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react';
 import { Divider, List, ListItem, ListItemText, ListItemButton, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTheme, styled } from '@mui/material/styles';
+import { useGetGenresQuery } from '../../services/TMDB';
+
+import genreIcons from '../../assets/genres';
 import { classes } from './style';
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 
 const categories = [
   { label: 'Popular', value: 'popular' },
   { label: 'Top Rated', value: 'top_rated' },
   { label: 'Upcoming', value: 'upcoming' },
-];
-
-const demoCategories = [
-  { label: 'Comedy', value: 'comedy' },
-  { label: 'Action', value: 'action' },
-  { label: 'Horror', value: 'horror' },
-  { label: 'Animation', value: 'animation' },
 ];
 
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
@@ -25,37 +23,39 @@ const StyledLink = styled(Link)(({ theme }) => ({
   color: theme.palette.text.primary,
 }));
 
+const LogoLink = styled(Link)(() => ({
+  display: 'flex',
+  justifyContent: 'center',
+  padding: '10% 0',
+}));
+
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
+  // const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  const { data, isFetching } = useGetGenresQuery();
 
   return (
     <>
-      <Link
-        to="/"
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '10% 0' }}
-      >
+      <LogoLink to="/">
         <img
-          className={{ width: '70%' }}
+          style={{ width: '70%' }}
           src={theme.palette.mode === 'light' ? redLogo : blueLogo}
           alt="Filmpire logo"
         />
-      </Link>
+      </LogoLink>
       <Divider />
       <List>
         <ListSubheader>Categories</ListSubheader>
-        {demoCategories.map(({ label, value }) => (
+        {categories.map(({ label, value }) => (
           <StyledLink
             key={value}
-            className={classes.links}
             to="/"
           >
-            <ListItemButton onClick={() => {}}>
-              {/* <ListItemIcon>
-                <img src={redLogo} className={classes.genreImages} height={30} />
-              </ListItemIcon> */}
+            <ListItemButton onClick={() => dispatch(selectGenreOrCategory(value))}>
+              <ListItemIcon>
+                <img src={genreIcons[label.toLowerCase()]} className={classes.genreImages} height={30} />
+              </ListItemIcon>
               <ListItemText primary={label} />
             </ListItemButton>
           </StyledLink>
@@ -64,20 +64,24 @@ const Sidebar = ({ setMobileOpen }) => {
       <Divider />
       <List>
         <ListSubheader>Genres</ListSubheader>
-        {categories.map(({ label, value }) => (
+        {isFetching ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress />
+          </Box>
+        ) : data.genres.map(({ id, name }) => (
           <StyledLink
-            key={value}
-            className={classes.links}
+            key={id}
             to="/"
           >
-            <ListItemButton onClick={() => {}}>
-              {/* <ListItemIcon>
-                <img src={redLogo} className={classes.genreImages} height={30} />
-              </ListItemIcon> */}
-              <ListItemText primary={label} />
+            <ListItemButton onClick={() => dispatch(selectGenreOrCategory(id))}>
+              <ListItemIcon>
+                <img src={genreIcons[name.toLowerCase()]} className={classes.genreImages} height={30} />
+              </ListItemIcon>
+              <ListItemText primary={name} />
             </ListItemButton>
           </StyledLink>
         ))}
+
       </List>
     </>
   );

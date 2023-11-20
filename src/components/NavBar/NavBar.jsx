@@ -77,11 +77,14 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
       <div>
-        <Box component="nav" className={classes.drawer}>
+        <Box
+          component="nav"
+          sx={{ width: { sm: 240 }, flexShrink: 0 }}
+        >
           {isMobile ? (
             <Drawer
               variant="temporary"
-              anchor="left"
+              anchor="right"
               open={mobileOpen}
               onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               classes={{ paper: classes.drawPaper }}
