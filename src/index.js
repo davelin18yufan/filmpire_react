@@ -9,11 +9,11 @@ import App from './components/App';
 const theme = createTheme({});
 
 ReactDom.createRoot(document.querySelector('#root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </Provider>,
+  // </React.StrictMode>,
 );

@@ -6,8 +6,6 @@ import { useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import { searchMovie } from '../../features/currentGenreOrCategory';
 
-import { classes } from './style';
-
 const Search = () => {
   const theme = useTheme();
   const [query, setQuery] = useState('');
@@ -32,8 +30,14 @@ const Search = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         variant="standard"
+        sx={{
+          color: theme.palette.mode === 'light' && 'black',
+          filter: theme.palette.mode === 'light' && 'invert(1)',
+          [theme.breakpoints.down('sm')]: {
+            marginTop: '-10px',
+            marginBottom: '10px',
+          } }}
         InputProps={{
-          className: classes(theme).input,
           startAdornment: (
             <InputAdornment position="start">
               <SearchIcon />

@@ -1,18 +1,51 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
 import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/system/Box';
+import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-cycle
 import { Sidebar, Search } from '..';
+import { moviesApi, fetchToken, getSessionId } from '../../utils';
+import { userSelector, setUser } from '../../features/auth';
 import { classes } from './style';
 
 const NavBar = () => {
-  const isAuthenticated = true;
   const [mobileOpen, setMobileOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
+
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector(userSelector);
+
+  const token = localStorage.getItem('request_token');
+  const sessionIdFromLocalStorage = localStorage.getItem('session_id');
+
+  // TODO: Replace query in useEffect and add ReactStrctMode
+  useEffect(() => {
+    //  check login status
+    const loginUser = async () => {
+      // approved and redirected
+      if (token) {
+        // if sessionID doesn't exist
+        if (sessionIdFromLocalStorage) {
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
+
+          dispatch(setUser(userData));
+        } else {
+          const sessionId = await getSessionId();
+
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionId}`);
+
+          dispatch(setUser(userData));
+        }
+      }
+    };
+
+    loginUser();
+  }, [token]);
 
   return (
     <>
@@ -48,14 +81,14 @@ const NavBar = () => {
           {!isMobile && <Search />}
           <div>
             {!isAuthenticated ? (
-              <Button color="inherit" onClick={() => {}}>
+              <Button color="inherit" onClick={fetchToken}>
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
               <Button
                 color="inherit"
                 component={Link}
-                to="/profile/:id"
+                to={`/profile/${user.id}`}
                 sx={{
                   '&:hover': {
                     color: 'white !important',
