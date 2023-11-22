@@ -34,7 +34,16 @@ export const tmdbApi = createApi({
         return `/movie/popular?page=${page}`;
       },
     }),
+    //* Get Movie
+    getMovie: builder.query({
+      // multiple request consolidation
+      query: (id) => `/movie/${id}?append_to_response=videos,credits`,
+    }),
+    //* Get User Specific Movies
+    getRecommendations: builder.query({
+      query: ({ id, list }) => `movie/${id}/${list}`,
+    }),
   }),
 });
 
-export const { useGetMoviesQuery, useGetGenresQuery } = tmdbApi;
+export const { useGetMoviesQuery, useGetGenresQuery, useGetMovieQuery, useGetRecommendationsQuery } = tmdbApi;

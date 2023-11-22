@@ -29,6 +29,11 @@ const LogoLink = styled(Link)(() => ({
   padding: '10% 0',
 }));
 
+const GenreImg = styled('img')(({ theme }) => ({
+  filter: theme.palette.mode === 'dark' && 'invert(1)',
+  marginRight: '10px',
+}));
+
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -75,7 +80,7 @@ const Sidebar = ({ setMobileOpen }) => {
           >
             <ListItemButton onClick={() => dispatch(selectGenreOrCategory(id))}>
               <ListItemIcon>
-                <img src={genreIcons[name.toLowerCase()]} className={classes.genreImages} height={30} />
+                <GenreImg src={genreIcons[name.toLowerCase()]} height={30} />
               </ListItemIcon>
               <ListItemText primary={name} />
             </ListItemButton>
