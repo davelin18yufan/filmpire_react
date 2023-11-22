@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-cycle
-import { MovieList } from '..';
+import { MovieList, Paginator } from '..';
 
 import { useGetMoviesQuery } from '../../services/TMDB';
 
@@ -36,6 +36,7 @@ const Movies = () => {
   return (
     <div>
       <MovieList movies={data} />
+      <Paginator currentPage={page} setPage={setPage} totalPages={data?.total_pages} />
     </div>
   );
 };

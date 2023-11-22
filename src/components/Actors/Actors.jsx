@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowBack } from '@mui/icons-material';
 import { useGetActorDetailsQuery, useGetMovieByActorQuery } from '../../services/TMDB';
 // eslint-disable-next-line import/no-cycle
-import { MovieList } from '..';
+import { MovieList, Paginator } from '..';
 
 const Avatar = styled('img')(() => ({
   maxWidth: '90%',
@@ -72,6 +72,7 @@ const Actors = () => {
       <Box margin="2rem 0">
         <Typography variant="h2" align="center" gutterBottom>Movies</Typography>
         {movies && <MovieList movies={movies} numberOfMovies={12} />}
+        <Paginator currentPage={page} setPage={setPage} totalPages={movies?.total_pages} />
       </Box>
     </>
   );
