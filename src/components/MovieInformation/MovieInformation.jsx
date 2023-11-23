@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { useState } from 'react';
-import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery, Rating } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery, Rating, styled } from '@mui/material';
 import { Movie as MovieIcon, Theaters, Language, PlusOne, FavoriteBorderOutlined, Remove, ArrowBack, Favorite } from '@mui/icons-material';
 
 import axios from 'axios';
@@ -109,7 +108,7 @@ const MovieInformation = () => {
     <Grid
       container
       sx={{
-        display: 'flex', justifyContent: 'space-around', margin: '10px 0 !important',
+        display: 'flex', justifyContent: 'space-around', margin: '10px 0 !important'
       }}
     >
       {/* Movie Title */}
@@ -139,7 +138,7 @@ const MovieInformation = () => {
             </Typography>
           </Box>
           <Typography variant="h6" align="center" gutterBottom>
-            {data?.runtime}min | Language: {data?.spoken_languages.length > 0 ? `/ ${data?.spoken_languages[0].name}` : ''}
+            {data?.runtime}min  | Language: {data?.spoken_languages[0].name}
           </Typography>
         </Grid>
         {/* Genres */}

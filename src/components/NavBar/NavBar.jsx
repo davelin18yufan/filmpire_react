@@ -112,7 +112,7 @@ const NavBar = () => {
       <div>
         <Box
           component="nav"
-          sx={{ width: { sm: 240 }, flexShrink: 0 }}
+          sx={{ width: { sm: '240px' }, flexShrink: '0' }}
         >
           {isMobile ? (
             <Drawer

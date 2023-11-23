@@ -10,12 +10,16 @@ const Search = () => {
   const theme = useTheme();
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
+  const location = useLocation();
 
   function handleKeypress(e) {
     if (e.key === 'Enter') {
       dispatch(searchMovie(query));
     }
   }
+
+  // only show at the home  page
+  if (location.pathname !== '/') return null;
 
   return (
     <Box sx={{ [theme.breakpoints.down('sm')]: {

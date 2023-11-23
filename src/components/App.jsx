@@ -5,16 +5,11 @@ import Box from '@mui/system/Box';
 import { Actors, Profile, MovieInformation, Movies, NavBar } from '.';
 
 const Root = () => (
-  <Box
-    sx={{
-      display: 'flex',
-      height: '100%',
-    }}
-  >
+  <Box display="flex" height="100%">
     <CssBaseline />
     <NavBar />
-    <Box component="main" sx={{ flexGrow: '1', padding: '2rem', width: '100%' }}>
-      <Box sx={{ height: '70px' }} />
+    <Box component="main" sx={{ flexGrow: '1', width: '100%', padding: '2rem' }}>
+      <Box height="70px" />
       <Outlet />
     </Box>
   </Box>
@@ -22,7 +17,7 @@ const Root = () => (
 
 const router = createBrowserRouter([
   {
-    path: '/*',
+    path: '/approved?', // optional segment
     element: <Root />,
     children: [
       { path: '', element: <Movies /> },
