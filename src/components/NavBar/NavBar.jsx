@@ -1,21 +1,23 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
-import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-material';
-import Box from '@mui/system/Box';
+import { AccountCircle, Brightness4, Brightness7, Menu } from '@mui/icons-material';
+import { AppBar, Avatar, Button, Drawer, IconButton, Toolbar, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import Box from '@mui/system/Box';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-cycle
-import { Sidebar, Search } from '..';
-import { moviesApi, fetchToken, getSessionId } from '../../utils';
-import { userSelector, setUser } from '../../features/auth';
+import { Search, Sidebar } from '..';
+import { ColorModeContext } from '../../utils/ToggleColorMode';
+import { setUser, userSelector } from '../../features/auth';
+import { fetchToken, getSessionId, moviesApi } from '../../utils';
 import { classes } from './style';
 
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
+  const { toggleColorMode } = useContext(ColorModeContext);
 
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector(userSelector);
@@ -75,7 +77,7 @@ const NavBar = () => {
               <Menu />
             </IconButton>
           )}
-          <IconButton color="inherit" sx={{ ml: 1 }} onClick={() => {}}>
+          <IconButton color="inherit" sx={{ ml: 1 }} onClick={toggleColorMode}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <Search />}

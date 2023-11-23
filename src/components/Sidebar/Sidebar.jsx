@@ -6,7 +6,6 @@ import { useTheme, styled } from '@mui/material/styles';
 import { useGetGenresQuery } from '../../services/TMDB';
 
 import genreIcons from '../../assets/genres';
-import { classes } from './style';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 
 const categories = [
@@ -34,6 +33,10 @@ const GenreImg = styled('img')(({ theme }) => ({
   marginRight: '10px',
 }));
 
+const GenreIcon = styled('img')(({ theme }) => ({
+  filter: theme.palette.mode === 'dark' && 'invert(1)',
+}));
+
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -59,7 +62,7 @@ const Sidebar = ({ setMobileOpen }) => {
           >
             <ListItemButton onClick={() => dispatch(selectGenreOrCategory(value))}>
               <ListItemIcon>
-                <img src={genreIcons[label.toLowerCase()]} className={classes.genreImages} height={30} />
+                <GenreIcon src={genreIcons[label.toLowerCase()]} height={30} />
               </ListItemIcon>
               <ListItemText primary={label} />
             </ListItemButton>
