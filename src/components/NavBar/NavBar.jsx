@@ -23,7 +23,7 @@ const NavBar = () => {
   const token = localStorage.getItem('request_token');
   const sessionIdFromLocalStorage = localStorage.getItem('session_id');
 
-  // TODO: Replace query in useEffect and add ReactStrctMode
+  // TODO: Replace query in useEffect and add ReactStrictMode
   useEffect(() => {
     //  check login status
     const loginUser = async () => {
@@ -100,8 +100,7 @@ const NavBar = () => {
                 <Avatar
                   style={{ width: 30, height: 30 }}
                   alt="Profile"
-                  // src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
-                  src="https://i.pravatar.cc/150?img=5"
+                  src={`https://www.themoviedb.org/t/p/w64_and_h64_face${user?.avatar?.tmdb?.avatar_path}`}
                 />
               </Button>
             )}

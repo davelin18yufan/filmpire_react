@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import { ExitToApp } from '@mui/icons-material';
 
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../features/auth';
-
-const favoriteMovies = [];
+import { useGetListQuery } from '../../services/TMDB';
+// eslint-disable-next-line import/no-cycle
+import { RatedCard } from '..';
 
 const Profile = () => {
   const { user } = useSelector(userSelector);
+  const { data: favoriteMovies, refetch: refetchFavorites } = useGetListQuery({
+    listName: 'favorite',
+    accountId: user.id,
+    sessionId: localStorage.getItem('session_id'),
+    page: 1,
+  });
+  const { data: watchListMovies, refetch: refetchWatchList } = useGetListQuery({
+    listName: 'watchlist',
+    accountId: user.id,
+    sessionId: localStorage.getItem('session_id'),
+    page: 1,
+  });
 
   const logout = () => {
     localStorage.clear();
 
     window.location.href = '/';
   };
+
+  useEffect(() => {
+    refetchFavorites();
+    refetchWatchList();
+  }, []);
 
   return (
     <Box>
@@ -26,11 +44,16 @@ const Profile = () => {
           Logout &nbsp; <ExitToApp />
         </Button>
       </Box>
-      {!favoriteMovies.length ? (
+      {!favoriteMovies?.results?.length && !watchListMovies?.results?.length ? (
         <Typography>
           Add favorites or watchlist for some movies to see them here!
         </Typography>
-      ) : <Box>FAVORITE MOVIES</Box>}
+      ) : (
+        <Box>
+          <RatedCard title="Favorite Movies" data={favoriteMovies} />
+          <RatedCard title="WatchList" data={watchListMovies} />
+        </Box>
+      )}
     </Box>
   );
 };
