@@ -3,6 +3,7 @@ import { CssBaseline } from '@mui/material';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Box from '@mui/system/Box';
 import { Actors, Profile, MovieInformation, Movies, NavBar } from '.';
+import Alan from './Alan/Alan';
 
 const Root = () => (
   <Box display="flex" height="100%">
@@ -12,6 +13,7 @@ const Root = () => (
       <Box height="70px" />
       <Outlet />
     </Box>
+    <Alan />
   </Box>
 );
 
