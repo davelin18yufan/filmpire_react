@@ -23,7 +23,7 @@ const Paginator = ({ currentPage, setPage, totalPages }) => {
       <Button onClick={handlePrev} variant="contained" color="primary" type="button" sx={{ margin: '30px 2px' }}>Prev</Button>
       <Typography variant="h4" sx={{ margin: '0 20px !important', color: 'text.primary' }}>{currentPage}</Typography>
       <Button onClick={handleNext} variant="contained" color="primary" type="button" sx={{ margin: '30px 2px' }}>Next</Button>
-      {currentPage < 500 && <Button onClick={() => setPage(500)} variant="contained" color="primary" type="button" sx={{ margin: '30px 2px' }}>{'>>'}</Button>}
+      {currentPage < 500 && <Button onClick={() => setPage(totalPages)} variant="contained" color="primary" type="button" sx={{ margin: '30px 2px' }}>{'>>'}</Button>}
     </Box>
   );
 };
