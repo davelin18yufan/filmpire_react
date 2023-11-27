@@ -40,8 +40,12 @@ const GenreIcon = styled('img')(({ theme }) => ({
 const Sidebar = ({ setMobileOpen }) => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  // const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
   const { data, isFetching } = useGetGenresQuery();
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [genreIdOrCategoryName]);
 
   return (
     <>

@@ -20,7 +20,7 @@ const Alan = () => {
       rootEl: alanBtnContainer.current,
       onButtonState: async (status) => {
         let isFirst = true;
-        if (status === 'ONLINE' && isFirst) {
+        if (status === 'LISTEN' && isFirst) {
           await alanBtnInstance.activate();
           alanBtnInstance.playText("Hello! I'm Alan. How can I help you?");
           isFirst = false;
