@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { useState, useEffect } from 'react';
-import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, useMediaQuery, Rating, styled } from '@mui/material';
+import { Modal, Typography, Button, ButtonGroup, Grid, Box, CircularProgress, Rating, styled } from '@mui/material';
 import { Movie as MovieIcon, Theaters, Language, PlusOne, FavoriteBorderOutlined, Remove, ArrowBack, Favorite } from '@mui/icons-material';
 
 import axios from 'axios';
@@ -145,7 +145,7 @@ const MovieInformation = () => {
       }}
     >
       {/* Movie Title */}
-      <Grid item sm={12} lg={4} style={{ display: 'flex', marginBottom: '30px' }}>
+      <Grid item sm={12} lg={5} style={{ display: 'flex', marginBottom: '30px' }}>
         <Poster
           src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
           alt={data?.title}

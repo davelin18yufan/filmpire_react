@@ -23,7 +23,7 @@ export async function fetchToken() {
       localStorage.setItem('request_token', request_token);
 
       // 2
-      window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=${window.location.origin}/approved`;
+      window.location.href = `https://www.themoviedb.org/authenticate/${request_token}?redirect_to=https://filmpire-davelin.netlify.app/`;
     }
   } catch (error) {
     console.error('Sorry, your token could not be created.');

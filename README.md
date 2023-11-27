@@ -8,7 +8,7 @@ To begin using Filmpire, follow these steps:
 
 1. **TMDb Account:** Straight log in to TMDb using my account credentials.
 2. **Alan AI Integration:** Open Alan AI by clicking on the corresponding icon in the top right corner of the app.
-3. **Voice Commands:** Start exploring the app by using voice commands. Try saying, "What does this app do?" or "What can I do here?" to get started.
+3. **Voice Commands:** Start exploring the app by using voice commands. Try saying, "Hello","What does this app do?" or "What can I do here?" to get started.
 
 ## Features
 
@@ -17,10 +17,11 @@ Filmpire offers the following features:
 ### Movie Browsing
 - **Popularity, Release Date, Ratings:** Browse movies based on popularity, release date, or ratings.
 - **Genres:** Explore movies in different genres.
+- **Details:** Explore movie information in detail.
 
 ### Movie Interaction
 - **Bookmarking:** Save your favorite movies.
-- **Collection:** Add movies to your watchlist and Favorites for future viewing.
+- **Watchlist:** Add movies to your watchlist for future viewing.
 
 ### Voice Control
 - **Alan AI Integration:** Utilize Alan AI for voice-controlled navigation and actions.
@@ -32,6 +33,9 @@ Experiment with voice commands to start with Alan AI:
 - "What can I do here?"
 
 Alan AI will provide information and guide you through available actions within the app.
+
+## Tech Stacks
+- React/Redux/MUI/Alan-ai
 
 ## Enjoy Filmpire!
 

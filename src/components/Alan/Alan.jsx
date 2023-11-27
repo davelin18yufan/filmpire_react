@@ -15,17 +15,9 @@ const Alan = () => {
   const go = useNavigate();
 
   useEffect(() => {
-    const alanBtnInstance = alanBtn({
+    alanBtn({
       key,
       rootEl: alanBtnContainer.current,
-      onButtonState: async (status) => {
-        let isFirst = true;
-        if (status === 'LISTEN' && isFirst) {
-          await alanBtnInstance.activate();
-          alanBtnInstance.playText("Hello! I'm Alan. How can I help you?");
-          isFirst = false;
-        }
-      },
       onCommand: async ({ command, mode, genres, genreOrCategory, query }) => {
         // Call the client code that will react to the received command
 
