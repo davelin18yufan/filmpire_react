@@ -19,7 +19,7 @@ const Root = () => (
 
 const router = createBrowserRouter([
   {
-    path: '/approved*?', // optional segment
+    path: '/approved?', // optional segment
     element: <Root />,
     children: [
       { path: '', element: <Movies /> },

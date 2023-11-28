@@ -263,15 +263,15 @@ const MovieInformation = () => {
           alignItems: 'center' }}
       >
         {data?.videos?.results.length > 0
-        && (
-        <TrailerIframe
-          autoPlay
-          frameBorder="0"
-          title="Trailer"
-          src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
-          allow="autoplay"
-        />
-        )}
+          ? (
+            <TrailerIframe
+              autoPlay
+              frameBorder="0"
+              title="Trailer"
+              src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+              allow="autoplay"
+            />
+          ) : <Typography variant="h5" align="center" sx={{ background: 'inherit' }}>Sorry, No trailer resource provided</Typography>}
       </Modal>
     </Grid>
   );
